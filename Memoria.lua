@@ -187,7 +187,7 @@ function Memoria:PLAYER_LEVEL_UP_SHOW_PLAYED_Handler(...)
     if (not Memoria.WaitForTimePlayed) then return; end
     Memoria.WaitForTimePlayed = false
     Memoria:ShowPrevious()
-    Memoria:AddScheduledScreenshot(0)
+    Memoria:AddScheduledScreenshot(1)
     Memoria:DebugMsg("Level up show played - Added screenshot to queue")
 end
 
