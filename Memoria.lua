@@ -4,7 +4,7 @@
 -- ********************************************************
 --
 -- This addon is written and copyrighted by:
---    * Mîzukichan @ EU-Antonidas (2010-2019)
+--    * Mîzukichan @ EU-Antonidas (2010-2020)
 --
 -- Contributors:
 --    * Softea_Lethon (Show played time on screenshot, Classic support) (2019) 
