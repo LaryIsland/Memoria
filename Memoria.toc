@@ -1,4 +1,4 @@
-## Interface: 80300
+## Interface: 11304
 ## Title: Memoria
 ## Version: 8.3
 ## Notes: Memoria automatically screenshots various milestones of your characters.
