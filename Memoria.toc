@@ -1,6 +1,6 @@
-## Interface: 90100
+## Interface: 20501
 ## Title: Memoria
-## Version: 9.1-1
+## Version: 9.1-tbc
 ## Notes: Memoria automatically screenshots various milestones of your characters.
 ## Author: Mîzukichan@EU-Antonidas
 ## LoadOnDemand: 0
