@@ -206,7 +206,7 @@ function Memoria:UPDATE_BATTLEFIELD_STATUS_Handler()
     -- if screenshot of this battlefield already taken, then return
     if (Memoria.BattlefieldScreenshotAlreadyTaken) then return; end
     -- if we are here, we have a freshly finished arena or battleground
-    if (!Memoria.IsClassic and IsActiveBattlefieldArena()) then
+    if (not Memoria.IsClassic and IsActiveBattlefieldArena()) then
         if (not Memoria_Options.arenaEnding) then return; end
         if (not Memoria_Options.arenaEndingOnlyWins) then
             Memoria:AddScheduledScreenshot(1)

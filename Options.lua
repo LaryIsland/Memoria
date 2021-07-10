@@ -74,10 +74,15 @@ function Memoria:OptionsSave()
 end
 
 function Memoria:OptionsRestore()
-    local IsRetail = tonumber(string.sub(GetBuildInfo(), 1, 1)) > 1
-    if (not IsRetail) then
+    local IsClassic = tonumber(string.sub(GetBuildInfo(), 1, 1)) == 1
+    if (IsClassic) then
         MemoriaOptions_NewAchievementCB:Disable()
         MemoriaOptions_ArenaEndingCB:Disable()
+        MemoriaOptions_ChallengeDoneCB:Disable()
+    end
+    local IsTBCC = tonumber(string.sub(GetBuildInfo(), 1, 1)) == 2
+    if (IsTBCC) then
+        MemoriaOptions_NewAchievementCB:Disable()
         MemoriaOptions_ChallengeDoneCB:Disable()
     end
     MemoriaOptions_NewAchievementCB:SetChecked(Memoria_Options.achievements)
