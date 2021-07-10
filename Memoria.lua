@@ -4,7 +4,7 @@
 -- ********************************************************
 --
 -- This addon is written and copyrighted by:
---    * Mîzukichan @ EU-Antonidas (2010-2020)
+--    * Mîzukichan @ EU-Antonidas (2010-2021)
 --
 -- Contributors:
 --    * Softea_Lethon (Show played time on screenshot, Classic support) (2019) 
@@ -41,7 +41,9 @@ Memoria.Debug = nil
 Memoria.WaitForTimePlayed = false
 Memoria.ChatSettings = {}
 Memoria.PlayerLevel = 1
-Memoria.IsRetail = tonumber(string.sub(GetBuildInfo(), 1, 1)) > 1
+Memoria.IsRetail = tonumber(string.sub(GetBuildInfo(), 1, 1)) > 8
+Memoria.IsClassic = tonumber(string.sub(GetBuildInfo(), 1, 1)) == 1
+Memoria.IsTBCC = tonumber(string.sub(GetBuildInfo(), 1, 1)) == 2
 local deformat = LibStub("LibDeformat-3.0")
 
 
@@ -204,7 +206,7 @@ function Memoria:UPDATE_BATTLEFIELD_STATUS_Handler()
     -- if screenshot of this battlefield already taken, then return
     if (Memoria.BattlefieldScreenshotAlreadyTaken) then return; end
     -- if we are here, we have a freshly finished arena or battleground
-    if (Memoria.IsRetail and IsActiveBattlefieldArena()) then
+    if (!Memoria.IsClassic and IsActiveBattlefieldArena()) then
         if (not Memoria_Options.arenaEnding) then return; end
         if (not Memoria_Options.arenaEndingOnlyWins) then
             Memoria:AddScheduledScreenshot(1)
@@ -274,6 +276,9 @@ function Memoria:RegisterEvents(frame)
     frame:UnregisterAllEvents()
     if Memoria.IsRetail then
         if (Memoria_Options.achievements) then frame:RegisterEvent("ACHIEVEMENT_EARNED"); end
+        if (Memoria_Options.challengeDone) then frame:RegisterEvent("CHALLENGE_MODE_COMPLETED"); end
+    end
+    if Memoria.IsTBCC then
         if (Memoria_Options.challengeDone) then frame:RegisterEvent("CHALLENGE_MODE_COMPLETED"); end
     end
     if (Memoria_Options.reputationChange) then frame:RegisterEvent("CHAT_MSG_SYSTEM"); end
