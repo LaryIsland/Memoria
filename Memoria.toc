@@ -1,6 +1,6 @@
 ## Interface: 100002
 ## Title: Memoria
-## Version: 10.0-1
+## Version: 10.0-2
 ## Notes: Memoria automatically screenshots various milestones of your characters.
 ## Author: Shadnix
 ## LoadOnDemand: 0
