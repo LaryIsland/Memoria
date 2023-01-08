@@ -1,6 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
  http://wowprogramming.com/FrameXML/UI.xsd">
-  <CheckButton name="MemoriaCBTemplate" virtual="true" inherits="OptionsCheckButtonTemplate">
+  <CheckButton name="MemoriaCBTemplate" virtual="true" inherits="UICheckButtonTemplate">
     <Layers>
       <Layer level="OVERLAY">
         <FontString name="$parent_Text" inherits="GameFontWhite" text="Text (L)">
@@ -10,6 +10,7 @@
         </FontString>
       </Layer>
     </Layers>
+    <Size x="26" y="26"/>
     <Scripts>
         <OnClick>
             local enable = self:GetChecked()

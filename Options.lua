@@ -74,13 +74,13 @@ function Memoria:OptionsSave()
 end
 
 function Memoria:OptionsRestore()
-    local IsClassic = tonumber(string.sub(GetBuildInfo(), 1, 1)) == 1
+    local IsClassic = tonumber(string.match(GetBuildInfo(), "%d+", 1)) == 1
     if (IsClassic) then
         MemoriaOptions_NewAchievementCB:Disable()
         MemoriaOptions_ArenaEndingCB:Disable()
         MemoriaOptions_ChallengeDoneCB:Disable()
     end
-    local IsTBCC = tonumber(string.sub(GetBuildInfo(), 1, 1)) == 2
+    local IsTBCC = tonumber(string.match(GetBuildInfo(), "%d+", 1)) == 2
     if (IsTBCC) then
         MemoriaOptions_NewAchievementCB:Disable()
         MemoriaOptions_ChallengeDoneCB:Disable()

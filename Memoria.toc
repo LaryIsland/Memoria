@@ -1,8 +1,8 @@
-## Interface: 90200
+## Interface: 100002
 ## Title: Memoria
-## Version: 9.2
+## Version: 10.0
 ## Notes: Memoria automatically screenshots various milestones of your characters.
-## Author: Mîzukichan@EU-Antonidas
+## Author: Shadnix
 ## LoadOnDemand: 0
 ## DefaultState: enabled
 ## SavedVariables: Memoria_Options
