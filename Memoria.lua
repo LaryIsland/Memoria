@@ -41,9 +41,9 @@ Memoria.Debug = nil
 Memoria.WaitForTimePlayed = false
 Memoria.ChatSettings = {}
 Memoria.PlayerLevel = 1
-Memoria.IsRetail = tonumber(string.sub(GetBuildInfo(), 1, 1)) > 8
-Memoria.IsClassic = tonumber(string.sub(GetBuildInfo(), 1, 1)) == 1
-Memoria.IsTBCC = tonumber(string.sub(GetBuildInfo(), 1, 1)) == 2
+Memoria.IsRetail = tonumber(string.match(GetBuildInfo(), "%d+", 1)) > 8
+Memoria.IsClassic = tonumber(string.match(GetBuildInfo(), "%d+", 1)) == 1
+Memoria.IsTBCC = tonumber(string.match(GetBuildInfo(), "%d+", 1)) == 2
 local deformat = LibStub("LibDeformat-3.0")
 
 
