@@ -6,6 +6,8 @@
 -- This addon is written and copyrighted by:
 --    * Mîzukichan @ EU-Antonidas (2010-2021)
 --
+-- Contributors:
+--    * LaryIsland @ EU-MirageRaceway (Fix for WotLK) (2023)
 --
 --    This file is part of Memoria.
 --
@@ -83,6 +85,10 @@ function Memoria:OptionsRestore()
     local IsTBCC = tonumber(string.match(GetBuildInfo(), "%d+", 1)) == 2
     if (IsTBCC) then
         MemoriaOptions_NewAchievementCB:Disable()
+        MemoriaOptions_ChallengeDoneCB:Disable()
+    end
+    local IsWotLK = tonumber(string.match(GetBuildInfo(), "%d+", 1)) == 3
+    if (IsWotLK) then
         MemoriaOptions_ChallengeDoneCB:Disable()
     end
     MemoriaOptions_NewAchievementCB:SetChecked(Memoria_Options.achievements)

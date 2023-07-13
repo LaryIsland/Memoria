@@ -8,6 +8,7 @@
 --
 -- Contributors:
 --    * Softea_Lethon (Show played time on screenshot, Classic support) (2019) 
+--    * LaryIsland @ EU-MirageRaceway (Fix for WotLK) (2023)
 --
 --    This file is part of Memoria.
 --
@@ -44,6 +45,7 @@ Memoria.PlayerLevel = 1
 Memoria.IsRetail = tonumber(string.match(GetBuildInfo(), "%d+", 1)) > 8
 Memoria.IsClassic = tonumber(string.match(GetBuildInfo(), "%d+", 1)) == 1
 Memoria.IsTBCC = tonumber(string.match(GetBuildInfo(), "%d+", 1)) == 2
+Memoria.IsWotLK = tonumber(string.match(GetBuildInfo(), "%d+", 1)) == 3
 local deformat = LibStub("LibDeformat-3.0")
 
 
@@ -214,9 +216,9 @@ function Memoria:UPDATE_BATTLEFIELD_STATUS_Handler()
             Memoria:DebugMsg("Arena ended - Added screenshot to queue")
         else
             local playerTeam = Memoria:GetPlayerTeam()
+            Memoria.BattlefieldScreenshotAlreadyTaken = true
             if (winner == playerTeam) then
                 Memoria:AddScheduledScreenshot(1)
-                Memoria.BattlefieldScreenshotAlreadyTaken = true
                 Memoria:DebugMsg("Arena won - Added screenshot to queue")
             end
         end
@@ -228,9 +230,9 @@ function Memoria:UPDATE_BATTLEFIELD_STATUS_Handler()
             Memoria:DebugMsg("Battleground ended - Added screenshot to queue")
         else
             local playerFaction = UnitFactionGroup("player")                                                          -- playerFaction is either "Alliance" or "Horde"
+            Memoria.BattlefieldScreenshotAlreadyTaken = true
             if ( (playerFaction == "Alliance" and winner == 1) or (playerFaction == "Horde" and winner == 0) ) then
                 Memoria:AddScheduledScreenshot(1)
-                Memoria.BattlefieldScreenshotAlreadyTaken = true
                 Memoria:DebugMsg("Battleground won - Added screenshot to queue")
             end
         end
@@ -278,8 +280,8 @@ function Memoria:RegisterEvents(frame)
         if (Memoria_Options.achievements) then frame:RegisterEvent("ACHIEVEMENT_EARNED"); end
         if (Memoria_Options.challengeDone) then frame:RegisterEvent("CHALLENGE_MODE_COMPLETED"); end
     end
-    if Memoria.IsTBCC then
-        if (Memoria_Options.challengeDone) then frame:RegisterEvent("CHALLENGE_MODE_COMPLETED"); end
+    if Memoria.IsWotLK then
+        if (Memoria_Options.achievements) then frame:RegisterEvent("ACHIEVEMENT_EARNED"); end
     end
     if (Memoria_Options.reputationChange) then frame:RegisterEvent("CHAT_MSG_SYSTEM"); end
     if (Memoria_Options.bosskills) then frame:RegisterEvent("ENCOUNTER_END"); end
@@ -365,7 +367,7 @@ function Memoria:GetPlayerTeam()
     local playerName = UnitName("player")
     for i = 1, numBattlefieldScores do
         local name, _, _, _, _, team = GetBattlefieldScore(i)
-        if (playerName == team) then
+        if (playerName == name) then
             return team
         end
     end
