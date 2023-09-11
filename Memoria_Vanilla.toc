@@ -1,4 +1,4 @@
-## Interface: 11403
+## Interface: 11404
 ## Title: Memoria
 ## Version: 10.1
 ## Notes: Memoria automatically screenshots various milestones of your characters.
